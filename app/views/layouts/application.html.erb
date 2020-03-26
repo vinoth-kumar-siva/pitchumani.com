@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pichumani.com</title>
+    <!-- You can use Open Graph tags to customize link previews.
+    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <meta property="og:url"           content="https://www.spritle.com/your-page.html" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="https://www.spritle.com/path/image.jpg" />
+</head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+</head>
+
+<body>
+  <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+  <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <header id="header">
+      <div class="navbar navbar-light box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a class="navbar-brand" href="#" id="header-logo">
+            <img src="https://raw.githubusercontent.com/orbitthemes/Orbit-Themes/master/assets/logo.png" class="img-fluid" alt="Orbit Themes">
+          </a>
+            <p>
+              <% if user_signed_in? %>
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>
+                <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+              <% end %>
+            </p>
+      </div>
+    </div>
+      </header>
+      <%= yield %>
+      <!-- Footer -->
+      <footer id="footer">
+        <p class="copyright">Made with
+          <i class="fa fa-heart"></i> By
+          <a target="_blank" title="spritle" href="http://www.spritle.com">Spritle</a> &copy;
+          <span id="currentYear"></span> All Rights Reserved.
+        </p>
+        <div class="social">
+          
+        </div>
+      </footer>
+    </body>
+    </html>
