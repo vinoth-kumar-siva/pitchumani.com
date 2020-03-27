@@ -17,3 +17,35 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+$(document).ready(function() {
+	$('.non-auth-btn').click(function(){
+		swal("Authenticaion Required! Please login!", "", "error");
+		// swal("Your vote has been registered successfully!", "", "success")
+	});
+	$('.vote-now').click(function(){
+		$.ajax({
+            url: "/home/vote_now",
+            method: "POST",
+            data: {user_id: $('.vote-now').attr('data-userid')},
+            success: function(data) {
+            swal(data.message, "", data.alert);
+                $('.support_count').html(data.support);
+     	    }
+        })
+    });
+    
+    $('.post-now').click(function(){
+        console.log( $('#message').val())
+		$.ajax({
+            url: "/home/create_post",
+            method: "POST",
+            data: {user_id: $('.vote-now').attr('data-userid'), message: $('#message').val()},
+            success: function(data) {
+            swal(data.message, "", data.alert);
+            $('#message').val('');
+            console.log("data ---->", data);
+                //$('.support_count').html(data.support);
+     	    }
+        })
+	});
+})

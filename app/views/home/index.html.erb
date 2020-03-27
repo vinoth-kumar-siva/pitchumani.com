@@ -1,88 +1,67 @@
 <main id="main" role="main">
-  <section class="jumbotron text-center" id="mainBanner">
+  <section class="jumbotron" id="mainBanner">
     <div class="container">
-      <h1 class="jumbotron-heading">Album Example</h1>
-      <p class="lead text-muted">Your gallery is an asset to your business. Use it to post examples of your photography, or your school's
-      facilities and students work. Watermark your photos and enable sharing with the social options feature.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-      </p>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row bootstrap snippets">
-        <div class="col-md-5 col-md-offset-2 col-sm-12">
-          <div class="comment-wrapper">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <div style="width: 100%;padding: 20px;">
-                  <button style="width: 50%;margin-left: 25%;height: 55px;background: #fcb603;color: #fff;border-color: #f8f9fa;border-radius: 6px;"><b>Vote Now</b></button>
-                  <!-- Your share button code -->
-                  <div class="fb-share-button" 
-                    data-href="https://www.spritle.com/your-page.html" 
-                    data-layout="button_count">
-                  </div>
-                </div>
-                <div style="width: 100%;padding: 20px;text-align: center;">
-                  <span><b>5</b> Support</span>
-                </div>
-                
-                <!-- <h5>Comments</h5> -->
-              </div>
-              <div class="panel-body">
-                <ul class="media-list">
-                  <li class="media">
-                    <a href="#" class="pull-left">
-                      <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                    </a>
-                    <div class="media-body">
-                      <span class="text-muted pull-right">
-                        <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
-                      </span>
-                      <strong class="text-success" style="padding: 10px;">@Balaji</strong>
-                      <p style="margin-left: 15px;">Test comment.</p>
-                    </div>
-                  </li>
-                  <li class="media">
-                    <a href="#" class="pull-left">
-                      <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
-                    </a>
-                    <div class="media-body">
-                      <span class="text-muted pull-right">
-                        <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
-                      </span>
-                      <strong class="text-success" style="padding: 10px;">@Test</strong>
-                      <p style="margin-left: 15px;">Tessssst</p>
-                    </div>
-                  </li>
-                  <li class="media">
-                    <a href="#" class="pull-left">
-                      <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="img-circle">
-                    </a>
-                    <div class="media-body">
-                      <span class="text-muted pull-right">
-                        <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
-                      </span>
-                      <strong class="text-success" style="padding: 10px;">@Vinoth</strong>
-                      <p style="margin-left: 15px;">Test test</p>
-                    </div>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-                <hr>
-                <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
-                <br>
-                <button type="button" class="btn btn-info pull-right">Post</button>
-              </div>
+      <div class="row">
+        <div class="col">
+          <h1 class="jumbotron-heading">Make him comeback</h1>
+          <ul>
+            <li>He saved your life.</li>
+            <li>He saved your marriage life.</li>
+            <li>He saved your office life.</li>
+            <li>He saved your friends and families.</li>
+          </ul> 
+          <p>We need him again to help us live happily with a smile in face.</p>
+          <p>Show your patron by voting for him to come back to main stream media again.</p>
+        </div>
+        <div class="col">
+          <div>
+            <% if current_user %>
+              <button class="vote-btn vote-now" data-userid="<%= current_user.id%>"><b>Vote Now</b></button>
+            <% else %>
+              <button class="vote-btn non-auth-btn"><b>Vote Now</b></button>
+            <% end %>
+            <!-- Your share button code -->
+          </div>
+          <div style="text-align: center; margin-bottom: 10px;">
+            <span><b class="support_count"><%= @support %></b> Support</span>
+          </div>
+          <div style="text-align: center; margin-bottom: 10px;">
+            <div class="fb-share-button" data-size="large"
+              data-href="https://www.spritle.com/your-page.html" 
+              data-layout="button_count">
             </div>
+          </div>
+          <div class="panel-body panel-border">
+            <div style="text-align: center; margin-bottom:25px;"><b>Latest Comments</b></div>
+            <hr>
+            <% @comments.each do |comment| %>
+              <ul class="media-list">
+                <li>
+                  <div class="media-body">
+                    <strong class="text-success" style="padding: 10px;">@<%= comment.user_id %>&nbsp;&nbsp;<%= comment.text %></strong>
+                    <span class="text-muted pull-right">
+                      <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            <% end %>
+            <div class="clearfix"></div>
+            <hr>
+            <input type="text" class="form-control" id="message" placeholder="write a comment..." rows="3"></textarea>
+            <% if current_user %>
+              <button type="button" class="btn btn-info pull-right post-now generate" data-userid="<%= current_user.id%>"><b>Post</b></button>
+            <% else %>
+              <button class="vote-btn non-auth-btn generate"><b>Post</b></button>
+            <% end %>
+            
           </div>
         </div>
       </div>
+      
     </div>
-  </div>
+  </section>
+
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -96,40 +75,75 @@
           <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
                 <small class="text-muted">12 mins</small>
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
                 <small class="text-muted">12 mins</small>
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
             <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">12 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">12 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">12 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">12 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4 box-shadow">
+            <iframe width="348" height="220"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe> 
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -143,42 +157,11 @@
 
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
+            <iframe width="348" height="220"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe> 
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">12 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">12 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
+              <p class="card-text">This is a wider card with supporting text.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -192,42 +175,11 @@
 
         <div class="col-md-4">
           <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
+            <iframe width="348" height="220"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            </iframe> 
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">12 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">12 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-            <img class="card-img-top" src="/images/thumbnail.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.</p>
+              <p class="card-text">This is a wider card with supporting text.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
