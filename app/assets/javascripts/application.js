@@ -41,10 +41,16 @@ $(document).ready(function() {
             method: "POST",
             data: {user_id: $('.vote-now').attr('data-userid'), message: $('#message').val()},
             success: function(data) {
-            swal(data.message, "", data.alert);
-            $('#message').val('');
-            console.log("data ---->", data);
-                //$('.support_count').html(data.support);
+                $('#message').val('');
+                $("#refresh_comment").empty();
+
+                swal(data.message, "", data.alert);
+                
+                var data_array = data.support;
+
+                data_array.forEach(function (arrayItem) {
+                    $('#refresh_comment').append('<ul class="media-list"><li><div class="media-body"><strong class="text-success" style="padding: 10px;">@'+ arrayItem.user_id +'&nbsp;&nbsp;'+ arrayItem.text +'</strong><span class="text-muted pull-right"><small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small></span></div></li></ul>')
+                });
      	    }
         })
 	});
