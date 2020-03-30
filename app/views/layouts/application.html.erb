@@ -86,7 +86,7 @@
 
               <div class="field">
                 <%= f.label :mobile_number %><br />
-                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number" %>
+                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number", :class => 'form-control' %>
               </div>
 
               <div class="field">
@@ -94,16 +94,17 @@
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
                 <% end %><br />
-                <%= f.password_field :password, autocomplete: "new-password" %>
+                <%= f.password_field :password, autocomplete: "new-password", :class => 'form-control' %>
               </div>
 
               <div class="field">
                 <%= f.label :password_confirmation %><br />
-                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => 'form-control' %>
               </div>
 
-              <div class="actions">
-                <%= f.submit "Sign up" %>
+              <div class="field">
+                <br/>
+                <%= f.submit "Sign up", :class => 'form-control btn btn-success col-md-5' %>
               </div>
             <% end %>
           </div>
@@ -126,12 +127,12 @@
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
               <div class="field">
                 <%= f.label :mobile_number %><br />
-                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number" %>
+                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number", :class => 'form-control' %>
               </div>
 
               <div class="field">
                 <%= f.label :password %><br />
-                <%= f.password_field :password, autocomplete: "current-password" %>
+                <%= f.password_field :password, autocomplete: "current-password", :class => 'form-control' %>
               </div>
 
               <% if devise_mapping.rememberable? %>
@@ -142,8 +143,10 @@
               <% end %>
 
               <div class="actions">
-                <%= f.submit "Log in" %>
-                <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+                <div class = "row">
+                  <%= f.submit "Log in", :class => 'form-control btn btn-success col-md-3' %>
+                  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, :class => 'form-control btn btn-primary col-md-5 ml-20'%>
+                </div> 
               </div>
             <% end %>
           </div>

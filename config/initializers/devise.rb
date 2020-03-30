@@ -41,7 +41,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
-  config.omniauth :facebook, 2675139769279635, "54fcbee61aa7b8abc1b7b07f1244e4c8", callback_url: "login.lvh.me:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, "233507271371188", "f75073680503a7f1acd111bc7e1e088f", callback_url: "http://localhost:3000/users/auth/facebook/callback"
   config.authentication_keys = [ :login ]
   config.reset_password_keys = [ :mobile_number ]
   config.confirmation_keys = [ :mobile_number ]
