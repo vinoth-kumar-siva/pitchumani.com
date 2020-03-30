@@ -7,6 +7,8 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 #devise
 gem 'devise'
+#omniauth-facebook
+gem 'omniauth-facebook'
 # Use pg as the database for Active Record
 gem 'pg'
 # Use Puma as the app server

@@ -43,16 +43,116 @@
           </a>
           <p>
             <% if user_signed_in? %>
-              <%= link_to 'Account', edit_user_registration_path, :class => 'navbar-link' %>&nbsp;|&nbsp
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#edituserModal">Account</button>&nbsp;|&nbsp
               <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
             <% else %>
-              <%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'  %>&nbsp;|&nbsp
-              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#newuserModal">Sign Up</button>&nbsp;|&nbsp
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#loginModal">Login</button>
             <% end %>
           </p>
         </div>
       </div>
     </header>
+    <!-- edituserModal -->
+    <div id="edituserModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Header</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- newuserModal -->
+    <div id="newuserModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Sign up</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
+              <div class="field">
+                <%= f.label :mobile_number %><br />
+                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Sign up" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- loginModal -->
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Log in</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <%= f.label :mobile_number %><br />
+                <%= f.number_field :mobile_number, autofocus: true, autocomplete: "mobile_number" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "current-password" %>
+              </div>
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %>
+
+              <div class="actions">
+                <%= f.submit "Log in" %>
+                <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+              </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <%= yield %>
     <!-- Footer -->
     <footer id="footer">
