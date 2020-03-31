@@ -7,9 +7,11 @@ class HomeController < ApplicationController
   end
 
   def vote_now
+    p '12333'
   	@user = User.find(params[:user_id])
   	@vote = @user.vote
   	if @vote
+      p ' avaible'
   		render :json => { message: "You have already voted!", alert: "error", status: 200}
   	else
   		@user.create_vote

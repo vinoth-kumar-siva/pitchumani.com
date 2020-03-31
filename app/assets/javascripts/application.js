@@ -17,9 +17,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require toastr
 $(document).ready(function() {
 	$('.non-auth-btn').click(function(){
-		swal("Authenticaion Required! Please login!", "", "error");
+        toastr.error("Authenticaion Required! Please login!")
 		// swal("Your vote has been registered successfully!", "", "success")
 	});
 	$('.vote-now').click(function(){
@@ -28,7 +29,13 @@ $(document).ready(function() {
             method: "POST",
             data: {user_id: $('.vote-now').attr('data-userid')},
             success: function(data) {
-            swal(data.message, "", data.alert);
+              console.log(data["alert"])
+                if (data["alert"] == "success"){
+                  toastr.success(data.message);  
+                }
+                else {
+                  toastr.error(data.message);
+                }
                 $('.support_count').html(data.support);
      	    }
         })
@@ -41,7 +48,7 @@ $(document).ready(function() {
             method: "POST",
             data: {user_id: $('.vote-now').attr('data-userid'), message: $('#message').val()},
             success: function(data) {
-            swal(data.message, "", data.alert);
+            toastr.error(data.message);
             $('#message').val('');
             console.log("data ---->", data);
                 //$('.support_count').html(data.support);
