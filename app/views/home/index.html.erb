@@ -28,31 +28,33 @@
           <div style="text-align: center; margin-bottom: 10px;">
             <div class="fb-share-button" data-size="large"
               data-href="https://www.spritle.com/your-page.html" 
-              data-layout="button_count">
+              data-layout="box_count">
             </div>
           </div>
           <div class="panel-body panel-border">
             <div style="text-align: center; margin-bottom:25px;"><b>Latest Comments</b></div>
             <hr>
-            <% @comments.each do |comment| %>
-              <ul class="media-list">
-                <li>
-                  <div class="media-body">
-                    <strong class="text-success" style="padding: 10px;">@<%= comment.user_id %>&nbsp;&nbsp;<%= comment.text %></strong>
-                    <span class="text-muted pull-right">
-                      <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            <% end %>
+            <div id="refresh_comment">
+              <% @comments.each do |comment| %>
+                <ul class="media-list">
+                  <li>
+                    <div class="media-body">
+                      <strong class="text-success" style="padding: 10px;">@<%= comment.user_id %>&nbsp;&nbsp;<%= comment.text %></strong>
+                      <span class="text-muted pull-right">
+                        <small class="text-muted"><button class="btn btn-xs"><span class="fa fa-thumbs-up"></span></button></small>
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              <% end %>
+            </div>
             <div class="clearfix"></div>
             <hr>
             <input type="text" class="form-control" id="message" placeholder="write a comment..." rows="3"></textarea>
             <% if current_user %>
               <button type="button" class="btn btn-info pull-right post-now generate" data-userid="<%= current_user.id%>"><b>Post</b></button>
             <% else %>
-              <button class="vote-btn non-auth-btn post-now generate"><b>Post</b></button>
+              <button class=" btn btn-info pull-right non-auth-btn generate"><b>Post</b></button>
             <% end %>
             
           </div>

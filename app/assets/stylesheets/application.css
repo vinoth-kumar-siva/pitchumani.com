@@ -15,33 +15,34 @@
  *= require_self
  *= require toastr
  */
-@import "bootstrap";
+ @import "bootstrap";
 
 
-.comment-wrapper .panel-body {
-    max-height:650px;
-    overflow:auto;
-}
-
-.comment-wrapper .media-list .media img {
-    width:64px;
-    height:64px;
-    border:2px solid #e5e7e8;
-}
-
-.comment-wrapper .media-list .media {
-    border-bottom:1px dashed #efefef;
-    margin-bottom:25px;
-}
-.vote-btn{
-	width: 50%;
-	margin-left: 25%;
-	height: 55px;
-	background: #fcb603;
-	color: #fff;
-	border-color: #f8f9fa;
-	border-radius: 6px;
-}
-.ml-20{
-margin-left: 10px;
-}
+ .comment-wrapper .panel-body {
+     max-height:650px;
+     overflow:auto;
+ }
+ 
+ .comment-wrapper .media-list .media img {
+     width:64px;
+     height:64px;
+     border:2px solid #e5e7e8;
+ }
+ 
+ .comment-wrapper .media-list .media {
+     border-bottom:1px dashed #efefef;
+     margin-bottom:25px;
+ }
+ .vote-btn{
+     width: 50%;
+     margin-left: 25%;
+     height: 55px;
+     background: #fcb603;
+     color: #fff;
+     border-color: #f8f9fa;
+     border-radius: 6px;
+ }
+ .ml-20{
+    margin-left: 10px;
+ }
+ 

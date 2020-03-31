@@ -23,7 +23,7 @@ class HomeController < ApplicationController
   def create_post
     @user = User.find(params[:user_id])
     Comment.create(user_id:params[:user_id], text: params[:message])
-    @comments = Comment.all 
-    render :json => { message: "Your vote has been registered successfully!", alert: "success", support: @comments, status: 200}
+    @comments = Comment.last(5)
+    render :json => { message: "Your comment has been registered successfully!", alert: "success", support: @comments, status: 200}
 	end
 end
