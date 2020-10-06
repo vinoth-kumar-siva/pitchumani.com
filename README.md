@@ -1,24 +1,15 @@
-# README
+# pitchumani.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**pitchumani.com** - A website for vadivelu to make him come back to the cinema industry
 
-Things you may want to cover:
+# Contributing
+All issues and pull requests are welcome! To run the code locally, first, fork the repository and then run the following commands on your computer:
 
-* Ruby version
+```sh
+git clone https://github.com/<your-username>/pitchumani.com.git
+cd pitchumani.com
+```
+When adding code, be sure to write unit tests where necessary.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Contact
+pitchumani.com was created by Vinoth. Feel free to reach out on [Email!](vinothsiva.94@gmail.com)
